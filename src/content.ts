@@ -23,9 +23,7 @@ function getAllSignContent() {
   //需要點擊的div
   const needSignDiv = contents.find((el) => el.className.includes("active"));
 
-  /**
-   * 簽到 -> 簽到後刷新時間
-   */
+  //簽到
   if (needSignDiv) {
     needSignDiv.click();
   }
