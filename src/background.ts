@@ -7,21 +7,6 @@ type DataType = {
   open: boolean;
 };
 
-//取得預設的簽到時間
-chrome.storage.sync.get("signTime", (data) => {
-  if (data.signTime) {
-    return;
-  }
-
-  //如果資料是undefined，設定預設簽到時間 0點5分
-  chrome.storage.sync.set({
-    signTime: {
-      hours: 0,
-      minutes: 5,
-    },
-  });
-});
-
 function startup() {
   chrome.storage.sync.get(["lastDate", "signTime", "open"], (data) => {
     let { lastDate, open, signTime } = data as DataType;
@@ -31,15 +16,51 @@ function startup() {
       });
     }
 
+    if (!signTime) {
+      chrome.storage.sync.set({
+        signTime: {
+          hours: 0,
+          minutes: 5,
+        },
+      });
+      return;
+    }
+
+    if (typeof open === "undefined") {
+      chrome.storage.sync.set({
+        open: true,
+      });
+      return;
+    }
+
+    let h = Number(signTime.hours);
+    let m = Number(signTime.minutes);
+
     let currentDate = new Date(); //目前時間
     let oldDate = new Date(lastDate); //上次簽到時間
+
+    let greaterHour = currentDate.getHours() > h; //當小時大於時
+    let greaterMinute =
+      currentDate.getHours() === h && currentDate.getMinutes() >= m; //當小時相等且分鐘大於等於時
+
+    /* debug */
+    console.clear();
+    console.log("currentDate:", currentDate);
+    console.log("oldDate:", oldDate);
+    console.log(currentDate.getDate() !== oldDate.getDate());
+    console.log(currentDate.getHours(), h, greaterHour);
+    console.log(currentDate.getMinutes(), m, greaterMinute);
+    console.log(
+      open &&
+        currentDate.getDate() !== oldDate.getDate() &&
+        (greaterHour || greaterMinute)
+    );
 
     //如果日期不同而且大於設定時間的話就自動開網頁簽到
     if (
       open &&
       currentDate.getDate() !== oldDate.getDate() &&
-      currentDate.getHours() >= signTime.hours &&
-      currentDate.getMinutes() >= signTime.minutes
+      (greaterHour || greaterMinute)
     ) {
       //簽到後用目前時間覆蓋掉上次時間，防止重複開啟網頁
       chrome.storage.sync.set({
@@ -58,4 +79,4 @@ function startup() {
 }
 
 startup();
-setInterval(startup, 15000);
+setInterval(startup, 1500);
