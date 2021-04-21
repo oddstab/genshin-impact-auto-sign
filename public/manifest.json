@@ -1,0 +1,31 @@
+{
+  "name": "原神官方論壇自動簽到",
+  "version": "2.0",
+  "manifest_version": 2,
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "icons": {
+    "128": "icon.png"
+  },
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "index.html"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://webstatic-sea.mihoyo.com/ys/event/signin-sea/index.html?act_id=e202102251931481"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run-at": "document_end"
+    }
+  ]
+}

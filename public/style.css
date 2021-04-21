@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  font-size: 16px;
+  font-family: "微軟正黑體";
+  color: rgb(135, 94, 58);
+}
+
+body {
+  width: 220px;
+  height: 110px;
+  border: 5px solid rgb(135, 94, 58);
+  background: rgb(240, 232, 221);
+}
+
+.container {
+  width: max-content;
+  padding: 10px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox label {
+  margin-left: 0.3rem;
+}
+
+.cbox {
+  display: block;
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 0.4rem;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.cbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 21px;
+  width: 21px;
+  background-color: rgb(240, 232, 221);
+  border: 1px solid rgb(135, 94, 58);
+  transition: 0.2s;
+}
+
+.cbox:hover input ~ .checkmark {
+  background-color: rgb(230, 222, 200);
+}
+
+.cbox input:checked ~ .checkmark {
+  background-color: rgb(220, 188, 96);
+}
+
+.cbox input:checked:hover ~ .checkmark {
+  background-color: rgba(223, 197, 118, 0.856);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.cbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.cbox .checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.sign-time-setting {
+  margin-top: 1.3rem;
+}
+
+.sign-time-setting input[type="number"] {
+  border: 1px solid rgb(135, 94, 58);
+  outline: none;
+  background-color: rgb(240, 232, 221);
+  width: 3rem;
+  padding: 0.2rem;
+}
