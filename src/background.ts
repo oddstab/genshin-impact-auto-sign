@@ -12,7 +12,7 @@ function startup() {
     let { lastDate, open, signTime } = data as DataType;
     if (!lastDate) {
       chrome.storage.sync.set({
-        lastDate: new Date().getTime(),
+        lastDate: new Date().getDate(), //上次簽到日期
       });
     }
 
@@ -37,34 +37,27 @@ function startup() {
     let m = Number(signTime.minutes);
 
     let currentDate = new Date(); //目前時間
-    let oldDate = new Date(lastDate); //上次簽到時間
-
-    let greaterHour = currentDate.getHours() > h; //當小時大於時
-    let greaterMinute =
-      currentDate.getHours() === h && currentDate.getMinutes() >= m; //當小時相等且分鐘大於等於時
+    let year = currentDate.getFullYear();
+    let month = currentDate.getMonth();
+    let day = currentDate.getDate();
 
     /* debug */
-    // console.clear();
-    // console.log("currentDate:", currentDate);
-    // console.log("oldDate:", oldDate);
-    // console.log(currentDate.getDate() !== oldDate.getDate());
-    // console.log(currentDate.getHours(), h, greaterHour);
-    // console.log(currentDate.getMinutes(), m, greaterMinute);
-    // console.log(
-    //   open &&
-    //     currentDate.getDate() !== oldDate.getDate() &&
-    //     (greaterHour || greaterMinute)
-    // );
+    console.clear();
+    console.log(data);
+    console.log("currentDate:", currentDate);
+    console.log(currentDate.getDate(), lastDate);
+    console.log(currentDate.getDate() !== lastDate);
+    console.log(currentDate > new Date(year, month, day, h, m));
 
     //如果日期不同而且大於設定時間的話就自動開網頁簽到
     if (
       open &&
-      currentDate.getDate() !== oldDate.getDate() &&
-      (greaterHour || greaterMinute)
+      currentDate.getDate() !== lastDate &&
+      currentDate > new Date(year, month, day, h, m)
     ) {
       //簽到後用目前時間覆蓋掉上次時間，防止重複開啟網頁
       chrome.storage.sync.set({
-        lastDate: new Date().getTime(),
+        lastDate: new Date().getDate(),
       });
 
       //開啟米哈遊的簽到頁面
@@ -79,4 +72,4 @@ function startup() {
 }
 
 startup();
-setInterval(startup, 1500);
+setInterval(startup, 2000);
