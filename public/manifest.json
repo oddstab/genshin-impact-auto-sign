@@ -1,6 +1,6 @@
 {
   "name": "原神官方論壇自動簽到",
-  "version": "3.0",
+  "version": "3.2",
   "manifest_version": 2,
   "description": "自動簽到，省去每天還要簽到的麻煩\n每日00:05自動開啟簽到網頁並簽到（可自由調整簽到時間）",
   "background": {
