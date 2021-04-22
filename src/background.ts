@@ -44,17 +44,17 @@ function startup() {
       currentDate.getHours() === h && currentDate.getMinutes() >= m; //當小時相等且分鐘大於等於時
 
     /* debug */
-    console.clear();
-    console.log("currentDate:", currentDate);
-    console.log("oldDate:", oldDate);
-    console.log(currentDate.getDate() !== oldDate.getDate());
-    console.log(currentDate.getHours(), h, greaterHour);
-    console.log(currentDate.getMinutes(), m, greaterMinute);
-    console.log(
-      open &&
-        currentDate.getDate() !== oldDate.getDate() &&
-        (greaterHour || greaterMinute)
-    );
+    // console.clear();
+    // console.log("currentDate:", currentDate);
+    // console.log("oldDate:", oldDate);
+    // console.log(currentDate.getDate() !== oldDate.getDate());
+    // console.log(currentDate.getHours(), h, greaterHour);
+    // console.log(currentDate.getMinutes(), m, greaterMinute);
+    // console.log(
+    //   open &&
+    //     currentDate.getDate() !== oldDate.getDate() &&
+    //     (greaterHour || greaterMinute)
+    // );
 
     //如果日期不同而且大於設定時間的話就自動開網頁簽到
     if (
