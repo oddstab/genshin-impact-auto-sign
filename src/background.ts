@@ -1,15 +1,5 @@
 import { IDataType } from "./interface/DataType";
 
-let config: IDataType = {
-  lastDate: new Date().getDate(),
-  signTime: {
-    hours: 0,
-    minutes: 5,
-  },
-  open: true,
-  urls: [],
-};
-
 function startup() {
   chrome.storage.sync.get(["lastDate", "signTime", "open"], (data) => {
     let { lastDate, open, signTime } = data as IDataType;
@@ -51,12 +41,12 @@ function startup() {
     let old = new Date(year, month, day, h, m);
 
     /* debug */
-    console.clear();
-    console.log(data);
-    console.log("currentDate:", now);
-    console.log(now.getDate(), lastDate);
-    console.log(now.getDate() !== lastDate);
-    console.log(now > old);
+    // console.clear();
+    // console.log(data);
+    // console.log("currentDate:", now);
+    // console.log(now.getDate(), lastDate);
+    // console.log(now.getDate() !== lastDate);
+    // console.log(now > old);
 
     //如果日期不同且大於設定時間的話就自動開網頁簽到
     if (open && now.getDate() !== lastDate && now > old) {
@@ -68,8 +58,7 @@ function startup() {
       //開啟米哈遊的簽到頁面
       //這邊不需要做任何簽到動作，因為content.ts裡面已經設定只要開啟米哈遊網頁就會自動簽到了
       chrome.tabs.create({
-        url:
-          "https://webstatic-sea.mihoyo.com/ys/event/signin-sea/index.html?act_id=e202102251931481",
+        url: "https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481",
         active: false, //開啟分頁時不會focus
       });
     }
@@ -77,4 +66,4 @@ function startup() {
 }
 
 startup();
-setInterval(startup, 2000);
+setInterval(startup, 5000);

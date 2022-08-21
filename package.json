@@ -6,7 +6,9 @@
     "start": "webpack --watch --mode production",
     "dist": "webpack --mode production"
   },
-  "dependencies": {},
+  "dependencies": {
+    "mtr-datepicker": "^0.3.11"
+  },
   "devDependencies": {
     "@types/chrome": "0.0.134",
     "@types/copy-webpack-plugin": "^6.4.1",

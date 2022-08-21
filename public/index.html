@@ -11,7 +11,7 @@
 
 <body>
   <div class="container">
-    <div class="home">
+    <div class="switch">
       <div class="cboxs" title="自動簽到開關">
         <label class="cbox">
           開啟自動簽到
@@ -19,33 +19,20 @@
           <span class="checkmark"></span>
         </label>
       </div>
-      <div class="custom-url" title="自訂要在簽到時一同開啟的網址">
-        <button class="goto-custom-url-list link">自訂網址</button>
-      </div>
-      <div class="sign-time-setting">
-        每日簽到時間(24時制) <br />
-        <input type="number" name="" id="hours" min="0" max="23" title="小時(0~23)"> 時
-        <input type="number" name="" id="minutes" min="0" max="59" title="分鐘(0~59)"> 分
+      <div>
+        <a title="開啟每日簽到網頁" href="https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481"
+          target="_blank">開啟每日簽到網頁</a>
       </div>
     </div>
 
-    <div class="custom-url-list" hidden>
-      <button class="go-back link" title="返回">返回</button>
-      <div class="description">
-        列表中的網址會隨著設定的時間跟每日簽到網頁同時開啟 <br />
-        <div class="sub-description">
-          官方有時候會出一些網頁活動，此時即可新增到列表中，在簽到的時候順便開啟
+    <div class="setting-box">
+      <div class="time-picker">
+        <div>簽到時間設定</div>
+        <div id="timepicker">
+          <input type="time" id="sign-time-picker" placeholder="簽到日期設定">
         </div>
       </div>
-      <ul>
-        <!-- <li>
-          <input type="text" name="" id="">
-          <button class="remove-url-list">&#10006;</button>
-        </li> -->
-      </ul>
-      <div class="button">
-        <button class="add-url-list">+</button>
-      </div>
+      <div class="is-sign-today"> </div>
     </div>
   </div>
   <script src="popup.js"></script>

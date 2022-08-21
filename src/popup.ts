@@ -1,150 +1,55 @@
+import { IDataType } from "./interface/DataType";
+
 /**
- * 取得所有url
+ * 更新簽到時間
+ * @param h
+ * @param m
  */
-function getAllUrl() {
-  return new Promise((resolve) => {
-    chrome.storage.local.get("urls", (data) => {
-      resolve(data);
-    });
+function updateSignTime(h: Number, m: Number) {
+  chrome.storage.sync.set({
+    signTime: {
+      hours: h,
+      minutes: m,
+    },
   });
 }
 
-function loadPage() {
-  getAllUrl().then(({ urls }: any) => {
-    urls.forEach((url: any) => {
-      let newLi = document.createElement("li");
-      let input = document.createElement("input");
-      let btn = document.createElement("button");
+/**
+ * 檢查今天是否已經簽到過
+ */
+function checkIsSignToday() {
+  chrome.storage.sync.get(["lastDate"], (data) => {
+    const currentDate = new Date().getDate();
+    const config = data as IDataType;
+    console.log(config, currentDate);
+    const el = document.querySelector(".is-sign-today") as HTMLInputElement;
+    el.innerHTML = config.lastDate === currentDate ? "今日已簽到" : "今日未簽到";
+  });
+}
 
-      input.type = "text";
-      input.value = url;
-      btn.innerHTML = "&#10006;";
-      btn.className = "remove-url-list";
+window.onload = () => {
+  const open = document.querySelector("#open") as HTMLInputElement; //開啟自動簽到
+  const dateInput = document.querySelector("#sign-time-picker") as HTMLInputElement; //日期
 
-      input.addEventListener("blur", () => {
-        console.log("blur");
-      });
-
-      btn.addEventListener("click", (e) => {
-        let el = e.target as HTMLElement;
-        console.log(el.parentElement);
-        el.parentElement?.remove();
-      });
-
-      newLi.appendChild(input);
-      newLi.appendChild(btn);
-
-      urlList.appendChild(newLi);
+  open.addEventListener("change", (e) => {
+    const el = e.target as HTMLInputElement;
+    chrome.storage.sync.set({
+      open: el.checked,
     });
   });
-  let open = document.querySelector("#open") as HTMLInputElement; //開啟自動簽到
-  let hours = document.querySelector("#hours") as HTMLInputElement; //小時
-  let minutes = document.querySelector("#minutes") as HTMLInputElement; //分鐘
-  let urlListDiv = document.querySelector(".custom-url-list") as HTMLDivElement;
-  let container = document.querySelector(".container") as HTMLDivElement;
-  let home = document.querySelector(".home") as HTMLDivElement;
-  let gotoUrlList = document.querySelector(
-    ".goto-custom-url-list"
-  ) as HTMLButtonElement; //自訂網址按鈕
-  let goBack = document.querySelector(".go-back") as HTMLButtonElement;
-  let addUrlList = document.querySelector(".add-url-list") as HTMLButtonElement;
-  let urlList = document.querySelector(
-    ".custom-url-list ul"
-  ) as HTMLUListElement;
 
-  let page = localStorage.getItem("page");
-  if (page) {
-    if (page !== "home") {
-      container.style.width = "298px";
-      home.setAttribute("hidden", "");
-      urlListDiv.removeAttribute("hidden");
-    } else {
-      container.style.width = "200px";
-      home.removeAttribute("hidden");
-      urlListDiv.setAttribute("hidden", "");
-    }
-  }
+  dateInput.addEventListener("change", (e) => {
+    const el = e.target as HTMLInputElement;
+    updateSignTime(Number(el.value.split(":")[0]), Number(el.value.split(":")[1]));
+  });
 
   chrome.storage.sync.get(["signTime", "open"], (data) => {
-    open.checked = Boolean(data.open);
-    hours.value = data.signTime.hours;
-    minutes.value = data.signTime.minutes;
+    const config = data as IDataType;
+    const h = config.signTime.hours.toString().padStart(2, "0");
+    const m = config.signTime.minutes.toString().padStart(2, "0");
+    dateInput.value = `${h}:${m}`;
+    open.checked = Boolean(config.open);
   });
 
-  function change() {
-    chrome.storage.sync.set({
-      signTime: {
-        hours: Number(hours.value),
-        minutes: Number(minutes.value),
-      },
-    });
-  }
-
-  function changeSetting() {
-    chrome.storage.sync.set({
-      open: open.checked,
-    });
-  }
-
-  hours.addEventListener("change", change);
-  minutes.addEventListener("change", change);
-  open.addEventListener("change", changeSetting);
-
-  gotoUrlList.addEventListener("click", () => {
-    container.style.width = "298px";
-    home.setAttribute("hidden", "");
-    urlListDiv.removeAttribute("hidden");
-    localStorage.setItem("page", "list");
-  });
-
-  goBack.addEventListener("click", () => {
-    container.style.width = "200px";
-    home.removeAttribute("hidden");
-    urlListDiv.setAttribute("hidden", "");
-    localStorage.setItem("page", "home");
-  });
-
-  addUrlList.addEventListener("click", () => {
-    let newLi = document.createElement("li");
-    let input = document.createElement("input");
-    let btn = document.createElement("button");
-
-    input.type = "text";
-    btn.innerHTML = "&#10006;";
-    btn.className = "remove-url-list";
-
-    input.addEventListener("blur", () => {
-      console.log("blur");
-    });
-
-    btn.addEventListener("click", (e) => {
-      let el = e.target as HTMLElement;
-      console.log(el.parentElement);
-      el.parentElement?.remove();
-    });
-
-    newLi.appendChild(input);
-    newLi.appendChild(btn);
-
-    urlList.appendChild(newLi);
-    urlList.scrollTo({
-      top: urlList.scrollHeight,
-    });
-
-    console.log("add");
-    chrome.storage.local.get("urls", (data) => {
-      let newUrls: any[] = [];
-      console.log(data.urls);
-      if (data.urls) {
-        newUrls = [...data.urls];
-      }
-      newUrls.push(`https://google.com/${Math.random()}`);
-
-      chrome.storage.local.set({
-        urls: newUrls,
-      });
-    });
-  });
-}
-
-window.onload = loadPage;
+  checkIsSignToday();
+};
