@@ -5,7 +5,7 @@
 自動簽到，省去每天還要簽到的麻煩  
 每日00:05自動開啟簽到網頁並簽到（可自由調整簽到時間）
 > 請記得先登入！  
-![](https://user-images.githubusercontent.com/44750772/115560939-a8ea3b00-a2e7-11eb-931f-927265836953.png)
+![image](https://user-images.githubusercontent.com/44750772/185805452-c57e9930-99a4-4dad-be1b-bf84f706b44a.png)
 
 ## Chrome 線上應用程式商店安裝
 - [Chrome Web Store](https://chrome.google.com/webstore/detail/ddncbaijlknflhdcijpdblfapjgfnohb?authuser=0&hl=zh-TW)
