@@ -16,4 +16,4 @@
 3. 選擇`載入未封裝項目`並選取剛剛的dist資料夾
 
 
-原神官方論壇 https://webstatic-sea.mihoyo.com/ys/event/signin-sea/index.html?act_id=e202102251931481  
+原神官方論壇 https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481
