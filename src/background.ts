@@ -1,7 +1,8 @@
 import { IDataType } from "./interface/DataType";
 
-function startup() {
+function checkSign() {
   chrome.storage.sync.get(["lastDate", "signTime", "open"], (data) => {
+    console.log("start check sign...");
     let { lastDate, open, signTime } = data as IDataType;
     if (!data.urls) {
       chrome.storage.sync.set({
@@ -62,8 +63,12 @@ function startup() {
         active: false, //開啟分頁時不會focus
       });
     }
+
+    console.log("check done..");
   });
 }
 
-startup();
-setInterval(startup, 5000);
+checkSign();
+
+chrome.alarms.create({ delayInMinutes: 1, periodInMinutes: 1 });
+chrome.alarms.onAlarm.addListener(() => checkSign());
