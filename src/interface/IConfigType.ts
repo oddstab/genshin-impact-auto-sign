@@ -1,9 +1,8 @@
-export interface IDataType {
+export interface IConfigType {
   lastDate: number;
   signTime: {
     hours: number;
     minutes: number;
   };
   open: boolean;
-  urls: string[];
 }

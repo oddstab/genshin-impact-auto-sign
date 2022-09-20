@@ -786,11 +786,6 @@ mimic-fn@^2.1.0:
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
 
-mtr-datepicker@^0.3.11:
-  version "0.3.11"
-  resolved "https://registry.yarnpkg.com/mtr-datepicker/-/mtr-datepicker-0.3.11.tgz#97ef54402d33b8bf5d3cf1581e816f9c9bd007ff"
-  integrity sha512-xtbGuYFq5k8LWDMgisZ33tEtsPXMhx/QZ16WTH0g4zu9ZzuAViTDxamkx154p21mMcqyXTDM7Xc1/Mt0o6bXJA==
-
 neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
