@@ -19,11 +19,11 @@ function updateSignTime(h: Number, m: Number) {
  * 檢查今天是否已經簽到過
  */
 async function checkIsSignToday() {
+  debugger;
   const config = await getConfig();
-  const last = new Date(config.lastDate).getDate();
   const currentDate = new Date().getDate();
   const el = document.querySelector(".is-sign-today") as HTMLInputElement;
-  el.innerHTML = last === currentDate ? "今日已簽到" : "今日未簽到";
+  el.innerHTML = config.lastDate === currentDate ? "今日已簽到" : "今日未簽到";
 }
 
 window.addEventListener("load", async () => {
@@ -40,12 +40,6 @@ window.addEventListener("load", async () => {
   dateInput.addEventListener("change", (e) => {
     const el = e.target as HTMLInputElement;
     updateSignTime(Number(el.value.split(":")[0]), Number(el.value.split(":")[1]));
-  });
-
-  document.querySelector(".check-schedule")?.addEventListener("click", () => {
-    chrome.alarms.get("TEST", (x) => {
-      console.log(x);
-    });
   });
 
   const config = await getConfig();
