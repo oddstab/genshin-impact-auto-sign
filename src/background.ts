@@ -1,9 +1,9 @@
-import { IDataType } from "./interface/DataType";
+import { IConfigType } from "./interface/IConfigType";
 
 function checkSign() {
   chrome.storage.sync.get(["lastDate", "signTime", "open"], (data) => {
     console.log("start check sign...");
-    let { lastDate, open, signTime } = data as IDataType;
+    let { lastDate, open, signTime } = data as IConfigType;
     if (!data.urls) {
       chrome.storage.sync.set({
         urls: [],
@@ -70,5 +70,5 @@ function checkSign() {
 
 // checkSign();
 
-chrome.alarms.create({ delayInMinutes: 1, periodInMinutes: 1 });
+chrome.alarms.create({ periodInMinutes: 1 });
 chrome.alarms.onAlarm.addListener(() => checkSign());

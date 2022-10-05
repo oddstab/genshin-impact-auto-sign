@@ -1,44 +1,40 @@
-/**
- * 取得所有簽到格子
- * @returns
- */
-function getAllSignContent() {
-  return new Promise<HTMLDivElement[]>((resolve) => {
-    setInterval(() => {
-      let dom = document.querySelectorAll("div[class*=components-home-assets-__sign-content_---list---] > div");
+import { SignHelper } from "./SignHelper";
 
-      if (dom) {
-        resolve(Array.from(dom) as HTMLDivElement[]);
-      }
-    }, 1000);
-  });
-}
-
-/**
- * 展開所有簽到格子
- */
-function loadMoreSignContent() {
-  const el: HTMLDivElement | null = document.querySelector(
-    "div[class*=components-home-assets-__sign-content_---arrow---]"
-  );
-
-  el?.click();
-}
-
-(async () => {
-  //取得所有簽到格子
-  let contents = await getAllSignContent();
-
-  while (contents.length <= 20) {
-    loadMoreSignContent();
-    contents = await getAllSignContent();
+const start = async () => {
+  const helper = new SignHelper();
+  const resignInfo = await helper.getInfo();
+  if (!resignInfo || resignInfo.signed) {
+    return;
   }
 
-  //需要點擊的div
-  const needSignDiv = contents.find((el) => el.className.includes("active"));
+  insertMask();
+  await helper.completeTask();
+  await helper.sign();
+  await helper.resign();
 
-  //簽到
-  if (needSignDiv) {
-    needSignDiv.click();
+  if (!resignInfo?.signed) {
+    window.location.reload();
   }
-})();
+};
+
+const insertMask = () => {
+  const style = `width: 100%;
+    height: 100%;
+    background: #000000a3;
+    position: absolute;
+    top: 0;
+    z-index: 9999;
+    color: #fff;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 64px;`;
+
+  let mask = document.createElement("div");
+  mask.style.cssText = style;
+  mask.innerHTML = "正在簽到...<br/>完成後將自動重整網頁";
+  document.body.appendChild(mask);
+};
+
+start();
