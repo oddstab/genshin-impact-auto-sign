@@ -39,16 +39,16 @@ function localizeHtmlPage() {
       }
   });
 
-  const i18n_input = document.querySelectorAll("[data-i18n-input]") as NodeListOf<HTMLInputElement>;
-  i18n_input.forEach(element => {
+  const input = document.querySelectorAll("[data-i18n-input]") as NodeListOf<HTMLInputElement>;
+  input.forEach(element => {
       const key = element.getAttribute("data-i18n-placeholder");
       if (key) {
         element.placeholder = chrome.i18n.getMessage(key);
       }
   });
 
-  const i18n_title = document.querySelectorAll("[data-i18n-title]") as NodeListOf<HTMLDivElement>;
-  i18n_title.forEach(element => {
+  const title = document.querySelectorAll("[data-i18n-title]") as NodeListOf<HTMLDivElement>;
+  title.forEach(element => {
       const key = element.getAttribute("data-i18n-title");
       if (key) {
         element.title = chrome.i18n.getMessage(key);
