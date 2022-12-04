@@ -39,7 +39,7 @@ function localizeHtmlPage() {
       }
   });
 
-  const input = document.querySelectorAll("[data-i18n-input]") as NodeListOf<HTMLInputElement>;
+  const input = document.querySelectorAll("[data-i18n-placeholder]") as NodeListOf<HTMLInputElement>;
   input.forEach(element => {
       const key = element.getAttribute("data-i18n-placeholder");
       if (key) {
