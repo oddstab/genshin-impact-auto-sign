@@ -23,13 +23,42 @@ async function checkIsSignToday() {
   const config = await getConfig();
   const currentDate = new Date().getDate();
   const el = document.querySelector(".is-sign-today") as HTMLInputElement;
-  el.innerHTML = config.lastDate === currentDate ? "今日已簽到" : "今日未簽到";
+  el.innerHTML = config.lastDate === currentDate
+    ? chrome.i18n.getMessage("is_signed_today_true")
+    : chrome.i18n.getMessage("is_signed_today_false");
+}
+
+/**
+ * 本地化html页面
+ */
+function localizeHtmlPage() {
+  document.querySelectorAll("[data-i18n-text]").forEach(element => {
+      const key = element.getAttribute("data-i18n-text");
+      if (key) {
+        element.textContent = chrome.i18n.getMessage(key);
+      }
+  });
+
+  const i18n_input = document.querySelectorAll("[data-i18n-input]") as NodeListOf<HTMLInputElement>;
+  i18n_input.forEach(element => {
+      const key = element.getAttribute("data-i18n-placeholder");
+      if (key) {
+        element.placeholder = chrome.i18n.getMessage(key);
+      }
+  });
+
+  const i18n_title = document.querySelectorAll("[data-i18n-title]") as NodeListOf<HTMLDivElement>;
+  i18n_title.forEach(element => {
+      const key = element.getAttribute("data-i18n-title");
+      if (key) {
+        element.title = chrome.i18n.getMessage(key);
+      }
+  });
 }
 
 window.addEventListener("load", async () => {
   const open = document.querySelector("#open") as HTMLInputElement; //開啟自動簽到
   const dateInput = document.querySelector("#sign-time-picker") as HTMLInputElement; //日期
-
   open.addEventListener("change", (e) => {
     const el = e.target as HTMLInputElement;
     chrome.storage.sync.set({
@@ -47,6 +76,8 @@ window.addEventListener("load", async () => {
   const m = config.signTime.minutes.toString().padStart(2, "0");
   dateInput.value = `${h}:${m}`;
   open.checked = Boolean(config.open);
+
+  localizeHtmlPage();
 
   checkIsSignToday();
 });

@@ -1,0 +1,24 @@
+{
+    "is_signed_today_true": {
+        "message": "今日已簽到"
+    },
+    "is_signed_today_false": {
+        "message": "今日未簽到"
+    },
+    "checkbox": {
+        "message": "開啟自動簽到"
+    },
+    "checkbox_title" : {
+        "message": "自動簽到開關"
+    },
+    "open_sign_in_page" : {
+        "message": "開啟每日簽到網頁"
+    },
+    "time_picker_description" :{
+        "message": "簽到時間設定"
+    },
+    "sign_time_picker" : {
+        "message": "簽到日期設定"
+    }
+}
+
