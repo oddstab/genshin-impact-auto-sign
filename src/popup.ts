@@ -78,6 +78,5 @@ window.addEventListener("load", async () => {
   open.checked = Boolean(config.open);
 
   localizeHtmlPage();
-
   checkIsSignToday();
 });
