@@ -1,0 +1,23 @@
+{
+    "is_signed_today_true": {
+        "message": "ログイン済み"
+    },
+    "is_signed_today_false": {
+        "message": "未ログイン"
+    },
+    "checkbox": {
+        "message": "自動ログインする"
+    },
+    "checkbox_title": {
+        "message": "設定切替"
+    },
+    "open_sign_in_page": {
+        "message": "ログインページ"
+    },
+    "time_picker_description": {
+        "message": "ログイン時間設定"
+    },
+    "sign_time_picker": {
+        "message": "ログイン時間設定"
+    }
+}
