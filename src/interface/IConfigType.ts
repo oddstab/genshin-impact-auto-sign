@@ -19,7 +19,7 @@ export type SignInfo = {
   monthQualityCnt: number;
 
   /**
-   * 補簽卡數量(目前是第一個月 不清楚是否會累積)
+   * 補簽卡數量
    */
   qualityCnt: number;
 

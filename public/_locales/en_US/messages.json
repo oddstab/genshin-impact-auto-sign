@@ -1,0 +1,26 @@
+{
+    "is_signed_today_true": {
+        "message": "Signed in today"
+    },
+    "is_signed_today_false": {
+        "message": "Not signed in today"
+    },
+    "checkbox": {
+        "message": "Turn on auto-sign-in"
+    },
+    "checkbox_title": {
+        "message": "Automatic sign-in switch"
+    },
+    "open_sign_in_page": {
+        "message": "Open daily sign-in page"
+    },
+    "time_picker_description": {
+        "message": "Sign-in time setting"
+    },
+    "sign_time_picker": {
+        "message": "Sign-in date setting"
+    },
+    "signing_mask": {
+        "message": "Signing in...<br/>The page will be automatically refresh after completion."
+    }
+}

@@ -19,5 +19,8 @@
     },
     "sign_time_picker": {
         "message": "ログイン時間設定"
+    },
+    "signing_mask": {
+        "message": "サインイン...<br/>完了後、ページは自動的に更新されます。"
     }
 }

@@ -18,6 +18,7 @@ const start = async () => {
 };
 
 const insertMask = () => {
+  const maskText = chrome.i18n.getMessage("signing_mask");
   const style = `width: 100%;
     height: 100%;
     background: #000000a3;
@@ -29,11 +30,12 @@ const insertMask = () => {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 64px;`;
+    font-size: 64px;
+  `;
 
   let mask = document.createElement("div");
   mask.style.cssText = style;
-  mask.innerHTML = "正在簽到...<br/>完成後將自動重整網頁";
+  mask.innerHTML = maskText;
   document.body.appendChild(mask);
 };
 

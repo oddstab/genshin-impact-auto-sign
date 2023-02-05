@@ -19,40 +19,40 @@ function updateSignTime(h: Number, m: Number) {
  * 檢查今天是否已經簽到過
  */
 async function checkIsSignToday() {
-  debugger;
   const config = await getConfig();
   const currentDate = new Date().getDate();
   const el = document.querySelector(".is-sign-today") as HTMLInputElement;
-  el.innerHTML = config.lastDate === currentDate
-    ? chrome.i18n.getMessage("is_signed_today_true")
-    : chrome.i18n.getMessage("is_signed_today_false");
+  el.innerHTML =
+    config.lastDate === currentDate
+      ? chrome.i18n.getMessage("is_signed_today_true")
+      : chrome.i18n.getMessage("is_signed_today_false");
 }
 
 /**
- * 本地化html页面
+ * 本地化html頁面
  */
 function localizeHtmlPage() {
-  document.querySelectorAll("[data-i18n-text]").forEach(element => {
-      const key = element.getAttribute("data-i18n-text");
-      if (key) {
-        element.textContent = chrome.i18n.getMessage(key);
-      }
+  document.querySelectorAll("[data-i18n-text]").forEach((element) => {
+    const key = element.getAttribute("data-i18n-text");
+    if (key) {
+      element.textContent = chrome.i18n.getMessage(key);
+    }
   });
 
   const input = document.querySelectorAll("[data-i18n-placeholder]") as NodeListOf<HTMLInputElement>;
-  input.forEach(element => {
-      const key = element.getAttribute("data-i18n-placeholder");
-      if (key) {
-        element.placeholder = chrome.i18n.getMessage(key);
-      }
+  input.forEach((element) => {
+    const key = element.getAttribute("data-i18n-placeholder");
+    if (key) {
+      element.placeholder = chrome.i18n.getMessage(key);
+    }
   });
 
   const title = document.querySelectorAll("[data-i18n-title]") as NodeListOf<HTMLDivElement>;
-  title.forEach(element => {
-      const key = element.getAttribute("data-i18n-title");
-      if (key) {
-        element.title = chrome.i18n.getMessage(key);
-      }
+  title.forEach((element) => {
+    const key = element.getAttribute("data-i18n-title");
+    if (key) {
+      element.title = chrome.i18n.getMessage(key);
+    }
   });
 }
 
