@@ -47,8 +47,8 @@ export class SignHelper {
   constructor() {
     this.baseURL = new URL("https://sg-hk4e-api.hoyolab.com/event/sol/");
     this.resignInfoPath = new URL("resign_info?act_id=e202102251931481", this.baseURL);
-    this.resignPath = new URL("resign?lang=zh-tw", this.baseURL);
-    this.signPath = new URL("sign?lang=zh-tw", this.baseURL);
+    this.resignPath = new URL("resign", this.baseURL);
+    this.signPath = new URL("sign", this.baseURL);
     this.taskListPath = new URL("task/list?act_id=e202102251931481", this.baseURL);
     this.taskCompletePath = new URL("task/complete", this.baseURL);
     this.taskAwardPath = new URL("task/award", this.baseURL);
