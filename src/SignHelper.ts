@@ -53,7 +53,7 @@ export class SignHelper {
     this.taskCompletePath = new URL("task/complete", this.baseURL);
     this.taskAwardPath = new URL("task/award", this.baseURL);
     this.maxResignCount = 3;
-    this.lang = chrome.i18n.getUILanguage().replace("_", "-");
+    this.lang = chrome.i18n.getUILanguage().replace("_", "-").toLowerCase();
     console.log("lang:", this.lang);
   }
 
