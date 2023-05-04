@@ -22,5 +22,11 @@
     },
     "signing_mask": {
         "message": "正在簽到...<br/>完成後將自動重整網頁"
+    },
+    "ext_name": {
+        "message": "HoYoLAB 自動簽到"
+    },
+    "ext_description": {
+        "message": "自動簽到，省去每天還要簽到的麻煩。每日00:05自動開啟簽到網頁並簽到（可自由調整簽到時間）"
     }
 }

@@ -1,22 +1,43 @@
 {
-  "name": "genshin-impact-auto-sign",
-  "version": "1.0.0",
+  "name": "hoyolab-auto",
+  "displayName": "HoYoLAB 自動簽到",
+  "version": "4.0",
+  "author": "oddstab",
+  "description": "自動簽到，省去每天還要簽到的麻煩。每日00:05自動開啟簽到網頁並簽到（可自由調整簽到時間）",
+  "type": "module",
   "license": "MIT",
+  "keywords": [
+    "chrome-extension",
+    "react",
+    "vite",
+    "create-chrome-ext",
+    ""
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oddstab/genshin-impact-auto-sign"
+  },
+  "engines": {
+    "node": ">=14.18.0"
+  },
   "scripts": {
-    "start": "webpack --watch --mode production",
-    "dist": "webpack --mode production"
+    "dev": "vite",
+    "build": "tsc && vite build"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/chrome": "0.0.134",
-    "@types/copy-webpack-plugin": "^6.4.1",
-    "@types/node": "^14.14.41",
-    "@types/webpack": "^5.28.0",
-    "copy-webpack-plugin": "^8.1.1",
-    "ts-loader": "^9.0.2",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.2.4",
-    "webpack": "^5.35.0",
-    "webpack-cli": "^4.6.0",
-    "zip-webpack-plugin": "^4.0.1"
+    "@crxjs/vite-plugin": "^1.0.12",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "@vitejs/plugin-react": "^1.3.2",
+    "autoprefixer": "^10.4.14",
+    "glob": "^9.2.1",
+    "postcss": "^8.4.23",
+    "tailwindcss": "^3.3.2",
+    "typescript": "^4.6.4",
+    "vite": "^2.9.13"
   }
 }
